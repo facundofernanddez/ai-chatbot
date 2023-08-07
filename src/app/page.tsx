@@ -11,7 +11,9 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-neutral-800">
       {messages.length !== 0 ? (
-        <div></div>
+        <div>
+          <h1>you have messages</h1>
+        </div>
       ) : (
         <div className="w-full flex justify-center pt-32">
           <h1 className="font-bold text-3xl">
