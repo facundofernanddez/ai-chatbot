@@ -18,7 +18,16 @@ export async function POST(req: Request) {
     messages: messages,
   });
 
-  const stream = OpenAIStream(response);
+  const stream = OpenAIStream(response, {
+    onCompletion: async (completion: string) => {
+      const data = await prisma.message.create({
+        data: {
+          answer: completion,
+          question: messages,
+        },
+      });
+    },
+  });
 
   return new StreamingTextResponse(stream);
 }
